@@ -1,0 +1,38 @@
+sources:
+  - name: landing
+    description: Landing zone for Payroll data loaded from data lake
+    schema: landing
+    database: PAYROLL_WAREHOUSE2
+    tables:
+      - name: allowance
+        identifier: lnd_allowance
+      - name: bonus
+        identifier: lnd_bonus
+      - name: combined_holidays
+        identifier: lnd_combined_holidays
+      - name: contract_details
+        identifier: lnd_contract_details
+      - name: dim_pay_period
+        identifier: lnd_dim_pay_period
+      - name: employee_details
+        identifier: lnd_employee_details
+      - name: employee_leave
+        identifier: lnd_employee_leave
+      - name: junior_pay_rates
+        identifier: lnd_junior_pay_rates
+      - name: past_payslips
+        identifier: lnd_past_payslips
+      - name: minimum_pay_rates
+        identifier: lnd_minimum_pay_rates
+      - name: pay_rate_adjustments
+        identifier: lnd_pay_rate_adjustments
+      - name: roster
+        identifier: lnd_roster
+      - name: super_guarantee_rates_formatted
+        identifier: lnd_super_guarantee_rates_formatted
+      - name: tax_rates
+        identifier: lnd_tax_rates
+      - name: time_off_in_lieu
+        identifier: lnd_time_off_in_lieu
+      - name: timesheet 
+        identifier: lnd_timesheet
