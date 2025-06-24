@@ -73,7 +73,7 @@ The payroll datasets include employee records, salary details, attendance logs, 
 
 ### Clone the repository
 ```shell
-git clone https://github.com/cdoge25/payroll-project.git
+git clone https://github.com/...
 ```
 
 ### Setup virtual environment
@@ -155,7 +155,3 @@ Once the pipeline is operational, you can generate insights such as:
 - Optimize payroll schedules to improve cash flow.
 - Target retention strategies for key employee segments.
 - Automate compliance checks to reduce audit risks.
-
----
-
-<p>&copy; 2025 cdoge25 |  Nguyen Duc Thien Hai</p>
