@@ -103,7 +103,8 @@ docker compose up -d --build
 ### Apache Airflow
 Orchestrates ETL workflows for payroll data processing.
 <p align="center">
-    <img src="assets/diagrams/airflow-dag.png" alt="airflow-dag" style="border-radius: 10px;">
+    <img src="images/payroll_airflow_connection.png" alt="airflow_connection" style="border-radius: 10px;">
+    <img src="images/payroll_dag.png" alt="payroll_dag" style="border-radius: 10px;">
     </br>
   Airflow overview
 </p>
@@ -111,7 +112,9 @@ Orchestrates ETL workflows for payroll data processing.
 ### Amazon S3
 Data Lake
 <p align="center">
-    <img src="assets/diagrams/amazon-s3.png" alt="amazon-s3" style="border-radius: 10px;">
+    <img src="images/payroll_iam.png" alt="payroll_iam" style="border-radius: 10px;">
+    <img src="images/payroll_s3_raw.png" alt="payroll_s3_raw" style="border-radius: 10px;">
+    <img src="images/payroll_s3_processed.png" alt="payroll_s3_processed" style="border-radius: 10px;">
     </br>
   Amazon S3 overview
 </p>
@@ -122,7 +125,11 @@ Used for lightweight data transformation and analytics at the data lake layer.
 ### Snowflake
 Data Warehouse
 <p align="center">
-    <img src="assets/diagrams/snowflake.png" alt="snowflake" style="border-radius: 10px;">
+    <img src="images/payroll_snowflake.png" alt="payroll_snowflake" style="border-radius: 10px;">
+    <img src="images/payroll_snowflake2.png" alt="payroll_snowflake2" style="border-radius: 10px;">
+    <img src="images/payroll_snowflake_marts.png" alt="payroll_snowflake_marts" style="border-radius: 10px;">
+    <img src="images/payroll_snowflake_snapshot.png" alt="payroll_snowflake_snapshot" style="border-radius: 10px;">
+    <img src="images/payroll_snowflake_staging.png" alt="payroll_snowflake_staging" style="border-radius: 10px;">
     </br>
   Snowflake overview
 </p>
@@ -130,7 +137,10 @@ Data Warehouse
 ### dbt & Great Expectations
 dbt transforms data into analytics-ready models; Great Expectations validates data quality.
 <p align="center">
-    <img src="assets/diagrams/dbt-dag.png" alt="dbt-dag" style="border-radius: 10px;">
+    <img src="images/payroll_dbt_lineage.png" alt="payroll_dbt_lineage" style="border-radius: 10px;">
+    <img src="images/payroll_dbt_docs.png" alt="payroll_dbt_docs" style="border-radius: 10px;" width="50%">
+    <img src="images/payroll_dbt_docs_project.png" alt="payroll_dbt_docs_project" style="border-radius: 10px;" width="50%">
+    <img src="images/payroll_docs_database.png" alt="payroll_docs_database" style="border-radius: 10px;" width="50%">
     </br>
   dbt overview
 </p>
@@ -155,3 +165,4 @@ Once the pipeline is operational, you can generate insights such as:
 - Optimize payroll schedules to improve cash flow.
 - Target retention strategies for key employee segments.
 - Automate compliance checks to reduce audit risks.
+
