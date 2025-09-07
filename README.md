@@ -25,7 +25,8 @@ This project demonstrates a modern data pipeline for automating the extraction, 
 
 ## Architecture
 
-<!-- Add a diagram if available -->
+This payroll data pipeline adopts a modular and maintainable structure with the following components:
+
 <p align="center">
     <img src="assets/diagrams/architecture.svg" alt="architecture" style="border-radius: 10px;">
     </br>
@@ -58,7 +59,7 @@ This project demonstrates a modern data pipeline for automating the extraction, 
 The payroll datasets include employee records, salary details, attendance logs, tax deductions, and benefits information. These are typically exported from HR/payroll systems and ingested into the pipeline for processing and analytics.
 
 <p align="center">
-    <img src="assets/diagrams/source_relational_model.png" alt="source-relational-model" style="border-radius: 10px;">
+    <img src="assets/diagrams/source_relational_model.png" alt="source-relational-model" style="border-radius: 10px;" width = "80%">
     </br>
   Source Relational Model
 </p>
@@ -73,22 +74,34 @@ The payroll datasets include employee records, salary details, attendance logs, 
 
 ### Clone the repository
 ```shell
-git clone https://github.com/...
+git clone https://github.com/PhoenixPhungNguyen/payroll_data_pipeline.git
 ```
 
 ### Setup virtual environment
-Navigate to your cloned directory:
-```shell
-uv venv --python 3.11
-source .venv/Scripts/activate
-uv sync
-```
 
+- Create and activate virtual environment:
+  ```shell
+  uv venv --python 3.11
+  source .venv/bin/activate   # or .venv/Scripts/activate on Windows
+  ```
+- Initialize project and install packages:
+  ```shell
+  uv init
+  uv add dbt-core dbt_snowflake ipykernel duckdb boto3 pyspark==3.3.0 pymupdf apache-airflow
+  uv sync
+  ```
+  
 ### Start services
 
-> - Create a `.env` file at the root level for environment variables (see `.env.example`).
-> - Ensure any required data files are placed in the appropriate folders as described in the documentation.
-
+- Create a `.env` file at the root level for environment variables (see `.env.example`).
+- Ensure any required data files are placed in the appropriate folders as described in the documentation.
+- Make sure to add .env, .venv/, and other sensitive files to .gitignore.
+- Configuring environment variables: Copy .env.example to .env and fill in:
+  Google API Key and Google drive folder ID
+  Slack tokens
+  AWS access keys
+  Snowflake credentials
+  
 To start all services:
 ```shell
 make up
@@ -100,14 +113,54 @@ docker compose up -d --build
 
 ## Tech Stack
 
+## Tech Stack
+### Google Cloud Platform (GCP)
+
+- Create API key in API & Services.
+<p align="center">
+    <img src="images/ecommerce_drive_api_key.png" alt="drive_api_key" style="border-radius: 10px;" width = "70%">
+    </br>
+</p>
+
+- Share payroll folder which contains 8 CSV files to ingest data from this folder to Amazon S3
+  
+<p align="center">
+    <img src="images/ecommerce_drive_folder.png" alt="drive_folder" style="border-radius: 10px;" width = "70%">
+    </br>
+</p>
+
 ### Apache Airflow
 Orchestrates ETL workflows for payroll data processing.
+
 <p align="center">
-    <img src="images/payroll_airflow_connection.png" alt="airflow_connection" style="border-radius: 10px;">
-    <img src="images/payroll_dag.png" alt="payroll_dag" style="border-radius: 10px;">
+    <img src="images/payroll_dag.png" alt="payroll_dag" style="border-radius: 10px;" width = "70%">
     </br>
   Airflow overview
 </p>
+
+- Building and running Airflow with Docker
+```shell
+cd docker/spark-app
+docker build . -t spark-app
+cd ../../
+docker compose up -d --build
+```
+
+- Install providers:
+```shell
+uv pip install apache-airflow-providers-slack httpfs
+```
+
+- Setup connections in Airflow UI for Slack, Snowflake, and AWS.
+  
+<p align="center">
+    <img src="images/payroll_airflow_connection.png" alt="airflow_connection" style="border-radius: 10px;width = "70%">
+    </br>
+  Airflow connection overview
+</p>
+
+### DuckDB
+Used for lightweight data transformation and analytics at the data lake layer.
 
 ### Amazon S3
 Data Lake
@@ -165,4 +218,5 @@ Once the pipeline is operational, you can generate insights such as:
 - Optimize payroll schedules to improve cash flow.
 - Target retention strategies for key employee segments.
 - Automate compliance checks to reduce audit risks.
+
 
