@@ -63,17 +63,17 @@ The `dbt_payroll` project is structured to follow best practices, organized into
 | Layer          | Purpose                          | Models |
 |----------------|----------------------------------|--------|
 | `landing`      | Raw data after Spark transformation | `lnd_allowance`, `lnd_bonus`, `lnd_combined_holidays`, `lnd_contract_details`, `lnd_dim_pay_period`, `lnd_employee_details`, `lnd_employee_leave`, `lnd_junior_pay_rates`, `lnd_past_payslips`, `lnd_minimum_pay_rates`, `lnd_pay_rate_adjustments`, `lnd_roster`, `lnd_super_guarantee_rates_formatted`, `lnd_tax_rates`, `lnd_time_off_in_lieu`, `lnd_timesheet` |
-| `staging`      | Cleaned, typed, renamed fields   | `stg_customers`, `stg_order_items`, `stg_order_payment`, `stg_order_reviews`, `stg_orders`, `stg_product_category_name_translation`, `stg_products`, `stg_sellers` |
-| `intermediate` | Joins & enrichments              | `int_order_item_joined` |
-| `marts - dim`  | Dimension tables                 | `dim_customers`, `dim_products`, `dim_sellers`, `dim_products_category_name_translation` |
-| `marts - fact` | Fact tables                      | `fact_orders_items`, `fact_order_payments`, `fact_order_reviews` |
+| `staging`      | Cleaned, typed, renamed fields   | `stg_alllowances`, `stg_bonuses`, `stg_contracts`, `stg_employee_leaves`, `stg_employees`, `stg_holidays`, `stg_junior_pay_rates`, `stg_minimum_pay_rates`, `stg_past_payslips`, `stg_pay_rate_adjustments`, `stg_roster`, `stg_super_guarantee_rates`, `stg_tax_rates`, `stg_time_off_in_lieu`, `stg_time_sheet` |
+| `intermediate` | Joins & enrichments              | `int_timesheet_joined` |
+| `marts - dim`  | Dimension tables                 | `dim_contracts`, `dim_employees`, `dim_holidays`, `dim_junior_pay_rates`, `dim_minimum_pay_rates`, `dim_pay_periods`, `dim_pay_rate_adjustments`, `dim_super_guarantee_rates`, `dim_tax_rates` |
+| `marts - fact` | Fact tables                      | `fact_allowances`, `fact_bonuses`, `fact_employee_leaves`, `fact_past_payslips`, `fact_roster`, `fact_time_off_in_lieu`, `fact_timesheet` |
 
 
-- **`seeds/`**: Stores static reference data from 01 Jan 2016 to 31 Dec 2019 stored in `dim_dates.csv` file.
+- **`seeds/`**: Stores static reference data from 01 Jan 2020 to 31 Dec 2030 stored in `dim_dates.csv` file.
 
 - **`snapshots/`**: Tracks historical changes in selected tables using Slowly Changing Dimension (SCD) Type 2 logic  
   Useful for maintaining audit trails of evolving records.
-Files used in this project: `scd_customers.sql`, `scd_products.sql`, `scd_sellers.sql`.   
+Files used in this project: `scd_contracts.sql`, `scd_employees.sql`.   
 
 - **`macros/`**: Contains reusable SQL logic written in Jinja to reduce duplication and enforce consistency.
 
@@ -355,6 +355,7 @@ Once the pipeline is operational, you can generate insights such as:
 - Optimize payroll schedules to improve cash flow.
 - Target retention strategies for key employee segments.
 - Automate compliance checks to reduce audit risks.
+
 
 
 
