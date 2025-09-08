@@ -112,20 +112,19 @@ docker compose up -d --build
 ```
 
 ## Tech Stack
-
-## Tech Stack
 ### Google Cloud Platform (GCP)
 
 - Create API key in API & Services.
 <p align="center">
-    <img src="images/ecommerce_drive_api_key.png" alt="drive_api_key" style="border-radius: 10px;" width = "70%">
+    <img src="images/payroll_drive_api_key.png" alt="drive_api_key" style="border-radius: 10px;" width = "70%">
     </br>
 </p>
 
-- Share payroll folder which contains 8 CSV files to ingest data from this folder to Amazon S3
+- Share payroll folder which contains 16 CSV files to ingest data from this folder to Amazon S3
   
 <p align="center">
-    <img src="images/ecommerce_drive_folder.png" alt="drive_folder" style="border-radius: 10px;" width = "70%">
+    <img src="images/payroll_drive_folder1.png" alt="drive_folder1" style="border-radius: 10px;" width = "70%">
+   <img src="images/payroll_drive_folder2.png" alt="drive_folder2" style="border-radius: 10px;" width = "70%">
     </br>
 </p>
 
@@ -163,30 +162,49 @@ uv pip install apache-airflow-providers-slack httpfs
 Used for lightweight data transformation and analytics at the data lake layer.
 
 ### Amazon S3
-Data Lake
+
+- Setup IAM for the Payroll System on Amazon S3.  
+It includes roles, permissions, and policies that ensure secure access control.
+  
 <p align="center">
-    <img src="images/payroll_iam.png" alt="payroll_iam" style="border-radius: 10px;">
-    <img src="images/payroll_s3_raw.png" alt="payroll_s3_raw" style="border-radius: 10px;">
-    <img src="images/payroll_s3_processed.png" alt="payroll_s3_processed" style="border-radius: 10px;">
+    <img src="images/payroll_iam.png" alt="payroll_iam" style="border-radius: 10px;" width = "70%">
     </br>
-  Amazon S3 overview
+  Amazon IAM
 </p>
 
-### DuckDB
-Used for lightweight data transformation and analytics at the data lake layer.
+- Data Lake: Raw Folder 
+  
+<p align="center">
+    <img src="images/payroll_s3_raw.png" alt="payroll_s3_raw" style="border-radius: 10px;" width = "70%">
+    </br>
+</p>
+
+- Data Lake: Processed Folder
+
+<p align="center">
+    <img src="images/payroll_s3_processed.png"       alt="payroll_s3_processed" style="border-radius: 10px;" width = "70%">
+</p>
 
 ### Snowflake
-Data Warehouse
-<p align="center">
-    <img src="images/payroll_snowflake.png" alt="payroll_snowflake" style="border-radius: 10px;">
-    <img src="images/payroll_snowflake2.png" alt="payroll_snowflake2" style="border-radius: 10px;">
-    <img src="images/payroll_snowflake_marts.png" alt="payroll_snowflake_marts" style="border-radius: 10px;">
-    <img src="images/payroll_snowflake_snapshot.png" alt="payroll_snowflake_snapshot" style="border-radius: 10px;">
-    <img src="images/payroll_snowflake_staging.png" alt="payroll_snowflake_staging" style="border-radius: 10px;">
-    </br>
-  Snowflake overview
-</p>
 
+- Data Warehouse
+  For Snowflake setup, follow instructions in snowflake-setup.md
+  
+<p align="center">
+    <img src="images/payroll_snowflake.png" alt="payroll_snowflake" style="border-radius: 10px;" width="40%">
+    <img src="images/payroll_snowflake2.png" alt="payroll_snowflake2" style="border-radius: 10px;" width="40%">
+  </br>
+</p>
+<p align="center">
+    <img src="images/payroll_snowflake_marts.png" alt="payroll_snowflake_marts" style="border-radius: 10px;" width="40%">
+    <img src="images/payroll_snowflake_staging.png" alt="payroll_snowflake_staging" style="border-radius: 10px;" width="40%">
+  </br>
+</p>
+<p align="center">
+     <img src="images/payroll_snowflake_snapshot.png" alt="payroll_snowflake_snapshot" style="border-radius: 10px;" width="40%">
+  </br>
+</p>
+  
 ### dbt & Great Expectations
 dbt transforms data into analytics-ready models; Great Expectations validates data quality.
 <p align="center">
@@ -218,5 +236,6 @@ Once the pipeline is operational, you can generate insights such as:
 - Optimize payroll schedules to improve cash flow.
 - Target retention strategies for key employee segments.
 - Automate compliance checks to reduce audit risks.
+
 
 
